@@ -1,0 +1,40 @@
+<nav class="w-100 d-flex justify-content-between align-items-center">
+  <a href="/patient/editPatient"
+    ><img
+      style="height: 6vmin; width: 7vmin"
+      class="mx-auto mb-3 rounded-circle object-fit-fill border border-dark"
+      alt="Image"
+      src="/images/<%=patient.avatar%>"
+      alt=""
+  /></a>
+  <a href="/patient/profile"
+    ><h2 class="text-center text-white">Hello <%=patient.username%></h2></a
+  >
+  <button class="btn-menu btn fs-2 text-white">
+    <i class="ri-menu-line"></i>
+  </button>
+</nav>
+<div
+  class="nav-options nav-options-hide position-absolute end-0 d-flex flex-column py-5 gap-4 fs-4 rounded-bottom"
+  style="
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px solid white;
+  "
+>
+  <!-- <a href="/patient/editPatient"
+    ><button class="btn-nav-options">Edit Profile</button></a
+  > -->
+  <a href="/patient/appointmentPatient"
+    ><button class="btn-nav-options">Appointments</button></a
+  >
+  <a href="/patient/signOutPatient"
+    ><button class="btn-nav-options">Sign Out</button></a
+  >
+</div>
+<script>
+  document.querySelector(".btn-menu").addEventListener("click", () => {
+    document.querySelector(".nav-options").classList.toggle("nav-options-hide");
+    document.querySelector(".btn-menu i").classList.toggle("ri-menu-line");
+    document.querySelector(".btn-menu i").classList.toggle("ri-close-line");
+  });
+</script>

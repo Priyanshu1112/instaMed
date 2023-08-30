@@ -1,0 +1,151 @@
+<%- include('partials/header')%> <%- include('partials/navPatient')%>
+
+<div
+  class="w-100 h-100"
+  style="
+    background-image: url(https://media.istockphoto.com/id/896916870/photo/white-hospital-lobby-poster.jpg?s=612x612&w=0&k=20&c=XeFLnatT6viPh5ptVETjeohLy6X-wRXc0ZMJhkH7IhQ=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <div
+    class="signIn-container w-100 h-100 d-flex flex-column"
+    style="background: rgba(0, 0, 0, 0.5)"
+  >
+    <h1 class="text-center text-white pt-3">Patient</h1>
+
+    <form
+      class="w-25 rounded p-3 m-auto my-3"
+      style="background: rgba(255, 255, 255, 0.6)"
+      action="/patient/signupPatient"
+      method="post"
+      enctype="multipart/form-data"
+      onsubmit="return validateForm()"
+    >
+      <h1 class="mb-4">Sign Up</h1>
+      <div class="d-flex justify-center">
+        <img
+          src="/images/<%=img%>"
+          style="height: 8vmin; width: 9vmin"
+          class="mx-auto mb-3 rounded-circle object-fit-fill border border-dark"
+          alt="Image"
+        />
+      </div>
+      <input type="file" class="form-control mb-3" name="avatar" />
+      <hr class="form-control" />
+      <input
+        class="form-control mb-3 d-flex flex-column align-items-center"
+        type="text"
+        placeholder="Name"
+        name="username"
+      />
+      <input
+        class="form-control mb-3 d-flex flex-column align-items-center"
+        type="text"
+        placeholder="Email"
+        name="email"
+      />
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Age"
+        name="age"
+      />
+      <select class="form-control mb-3" name="gender" id="">
+        <option value="gender" selected disabled class="text-muted">
+          Gender
+        </option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Contact Number"
+        name="contact"
+      />
+      <input
+        class="form-control mb-3"
+        type="password"
+        placeholder="********"
+        name="password"
+      />
+      <button class="btn btn-primary text-white w-25" type="submit">
+        Sign Up
+      </button>
+      <p>
+        Already have an account ?
+        <a href="/patient/signInPatient" class="text-decoration-none"
+          >Sign In</a
+        >
+      </p>
+      <% if (error && error.length>0) { %>
+      <div class="alert alert-danger text-center mt-2" role="alert">
+        ❌ <%=error%>
+      </div>
+      <%} %>
+    </form>
+  </div>
+</div>
+<script>
+  const validateForm = () => {
+    const nameInput = document.querySelector('input[name="username"]');
+    const emailInput = document.querySelector('input[name="email"]');
+    const avatarInput = document.querySelector('input[name="avatar"]');
+    const ageInput = document.querySelector('input[name="age"]');
+    const genderInput = document.querySelector('input[name="gender"]');
+    const contactInput = document.querySelector('input[name="contact"]');
+    const passwordInput = document.querySelector('input[name="password"]');
+    if (nameInput.value.trim() == "") {
+      alert("Name is requierd");
+      return false;
+    }
+    if (emailInput.value.trim() == "") {
+      alert("Email is requierd");
+      return false;
+    }
+    if (ageInput.value.trim() === "") {
+      alert("Age is required.");
+      return false;
+    }
+
+    if (genderInput.value.trim() === "") {
+      alert("Gender is required.");
+      return false;
+    }
+
+    if (contactInput.value.trim() === "") {
+      alert("Contact Number is required.");
+      return false;
+    }
+
+    if (passwordInput.value.trim() === "") {
+      alert("Password is required.");
+      return false;
+    }
+    return true;
+  };
+
+  const avatarInput = document.querySelector("input[name='avatar']");
+  const avatarPreview = document.querySelector("form div img");
+  const defaultSrc = avatarPreview.src;
+  avatarInput.addEventListener("change", (event) => {
+    const selectedFile = event.target.files[0];
+    console.log(selectedFile);
+    if (selectedFile) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        console.log(e.target.result);
+        avatarPreview.src = e.target.result;
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      avatarPreview.src = defaultSrc; // Clear the preview if no file is selected
+    }
+  });
+</script>
+<%- include('partials/footer')%>

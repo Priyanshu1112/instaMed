@@ -1,0 +1,65 @@
+<%- include('partials/header')%>
+
+<div
+  class="w-100 h-100"
+  style="
+    background-image: url(https://www.jonesday.com/-/media/images/publications/2020/09/health-care-on-the-other-side-physician-compensation-models-in-a-postcovid19-landscape/articleimage/healthcareontheothersidewpbanner_2000905_s.jpeg?rev=e28c6163b6484e40920318556d43a2d6&h=800&w=1600&la=en&hash=EB9950B1CE8314E1CBDF8571697B72CE);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <div
+    class="overlay w-100 h-100 p-5"
+    style="background-color: rgba(0, 0, 0, 0.1)"
+  >
+    <%- include('partials/navProfilePatient')%>
+    <form
+      class="m-auto w-25 rounded p-3 mb-4"
+      style="background: rgba(255, 255, 255, 0.6)"
+      action="/editpatient/<%= patient._id%>"
+      method="post"
+    >
+    
+      <h1 class="mb-4">Edit Profile</h1>
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="Name"
+        name="name"
+        value="<%=patient.name%>"
+        disabled
+      />
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Age"
+        name="age"
+        value="<%=patient.age%>"
+        disabled
+      />
+     <input
+     class="form-control mb-3"
+     type="text"
+     placeholder="Name"
+     name="gender"
+     value="<%=patient.gender%>"
+     disabled
+   />
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Contact Number"
+        name="contact"
+        value="<%=patient.contact%>"
+        disabled
+      />
+
+     
+    </form>
+    <h2 class="bg-success w-25 m-auto rounded  text-center text-white">Profile Updated</h2>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer')%>

@@ -1,0 +1,63 @@
+<%- include('partials/header')%>
+<div
+  class="h-100 w-100"
+  style="
+    background-image: url(https://w0.peakpx.com/wallpaper/269/270/HD-wallpaper-doctor-motivation-medical-study.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: center;
+  "
+>
+  <div
+    class="overlay w-100 h-100 p-5"
+    style="background-color: rgba(0, 0, 0, 0.4)"
+  >
+    <%- include('partials/navProfileDoctor')%>
+
+    <div
+      class="m-auto p-5 rounded"
+      style="
+        width: 60vw;
+        max-height: 80vh;
+        overflow: auto;
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 10px solid white;
+      "
+    >
+      <h4 class="text-center mb-3">Appointments</h4>
+      <table class="">
+        <thead>
+          <th>Patient Name</th>
+          <th>Age</th>
+          <th>Contact</th>
+          <th>Gender</th>
+          <th>Booking Time</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% list.forEach((li)=>{%>
+          <tr>
+            <td><%= li.patientName %></td>
+            <td><%= li.patientAge %></td>
+            <td><%= li.patientContact %></td>
+            <td><%= li.patientGender %></td>
+            <td><%= li.appointmentTime %></td>
+            <td class="d-flex justify-content-end">
+              <form action="" method="post">
+                <%if(li.status === 'pending'){%>
+                <button class="btn btn-dark" type="submit">Confirm</button>
+                <%}else{%>
+                <button class="btn btn-success" disabled>Confirmed</button>
+
+                <%}%>
+              </form>
+            </td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%-include('partials/footer')%> <%- include('partials/footer')%>

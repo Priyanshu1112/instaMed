@@ -1,0 +1,110 @@
+<%- include('partials/header')%>
+
+<div
+  class="w-100 h-100"
+  style="
+    background-image: url(https://w0.peakpx.com/wallpaper/269/270/HD-wallpaper-doctor-motivation-medical-study.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <div
+    class="overlay w-100 h-100 p-5"
+    style="background-color: rgba(0, 0, 0, 0.4)"
+  >
+    <%- include('partials/navProfileDoctor')%>
+    <form
+      class="m-auto w-25 rounded p-3"
+      style="background: rgba(255, 255, 255, 0.6)"
+      action="/doctor/editdoctor"
+      method="post"
+      onsubmit="return validateForm()"
+    >
+      <h1 class="mb-4">Edit Profile</h1>
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="Name"
+        name="name"
+        value="<%=doctor.username%>"
+      />
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Age"
+        name="age"
+        value="<%=doctor.age%>"
+      />
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="Specialist"
+        name="specialist"
+        value="<%=doctor.specialist%>"
+      />
+      <input
+        class="form-control mb-3"
+        type="email"
+        placeholder="email"
+        name="email"
+        value="<%=doctor.email%>"
+      />
+
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Contact Number"
+        name="contact"
+        value="<%=doctor.contact%>"
+      />
+      <div class="d-flex justify-content-center gap-3">
+        <button class="btn m-auto btn-success" type="submit">Update</button>
+      </div>
+      <% if (msg && msg.length>0) { %>
+      <div class="alert alert-success mt-3" role="alert">✅ <%=msg%></div>
+      <%} %>
+    </form>
+    <div class="d-flex justify-content-center mt-3">
+      <button class="btn-danger btn deleteBtn">Delete Id</button>
+    </div>
+  </div>
+</div>
+<script>
+  const validateForm = () => {
+    const nameInput = document.querySelector('input[name="name"]');
+    const ageInput = document.querySelector('input[name="age"]');
+    const contactInput = document.querySelector('input[name="contact"]');
+
+    if (nameInput.value.trim() === "") {
+      alert("Name is required.");
+      return false;
+    }
+
+    if (ageInput.value.trim() === "") {
+      alert("Age is required.");
+      return false;
+    }
+
+    if (contactInput.value.trim() === "") {
+      alert("Contact Number is required.");
+      return false;
+    }
+    return true;
+  };
+
+  const deleteBtn = document.querySelector(".deleteBtn");
+  deleteBtn.addEventListener("click", () => {
+    console.log("Delete button clicked");
+    const confirmed = window.confirm(
+      "Are you sure you want to delete your Id?"
+    );
+    if (confirmed) {
+      console.log("User confirmed deletion");
+      window.location.href = "/doctor/deleteDoctor";
+    } else {
+      console.log("User canceled deletion");
+    }
+  });
+</script>
+<%- include('partials/footer')%>

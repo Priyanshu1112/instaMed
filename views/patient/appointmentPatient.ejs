@@ -1,0 +1,75 @@
+<%-include('partials/header')%>
+
+<div
+  class="h-100 w-100"
+  style="
+    background-image: url(https://www.jonesday.com/-/media/images/publications/2020/09/health-care-on-the-other-side-physician-compensation-models-in-a-postcovid19-landscape/articleimage/healthcareontheothersidewpbanner_2000905_s.jpeg?rev=e28c6163b6484e40920318556d43a2d6&h=800&w=1600&la=en&hash=EB9950B1CE8314E1CBDF8571697B72CE);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: center;
+  "
+>
+  <div
+    class="overlay w-100 h-100 p-5"
+    style="background-color: rgba(0, 0, 0, 0.1)"
+  >
+    <% if (msg === undefined){%> <%}else if(msg !== null){%>
+    <div class="appointmentStatus text-white p-4 d-flex justify-content-center">
+      <h4 class="d-inline bg-success p-3 m-auto">✅ <%= msg%></h4>
+    </div>
+
+    <% }%> <%- include('partials/navProfilePatient')%>
+
+    <div
+      class="m-auto p-5 rounded"
+      style="
+        width: 60vw;
+        max-height: 80vh;
+        overflow: auto;
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 10px solid white;
+      "
+    >
+      <table class="">
+        <thead>
+          <th>Doctor Name</th>
+          <th>Specialist</th>
+          <th>Contact</th>
+          <th>Booking Time</th>
+          <th>Status</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% appointments.forEach((appointment)=>{%>
+          <tr>
+            <td><%= appointment.doctorName%></td>
+            <td><%= appointment.specialist%></td>
+            <td><%= appointment.contact%></td>
+            <td>
+              <%= appointment.time.toISOString().slice(0, 19).replace("T", " ")
+              %>
+            </td>
+            <td><%= appointment.status%></td>
+            <td class="d-flex justify-content-end">
+              <a href="/patient/deleteAppointment/<%=appointment._id%>"
+                ><button class="btn btn-dark">Delete</button></a
+              >
+            </td>
+            <%})%>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  function hideAppointmentStatus() {
+    const appointmentStatus = document.querySelector(".appointmentStatus");
+    if (appointmentStatus) {
+      appointmentStatus.classList.add("d-none");
+    }
+  }
+
+  setTimeout(hideAppointmentStatus, 3000);
+</script>
+<%-include('partials/footer')%>

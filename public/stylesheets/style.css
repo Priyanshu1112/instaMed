@@ -1,0 +1,117 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-style: Helvetica;
+}
+
+.df-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Global styles */
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #383838;
+}
+
+th {
+  background-color: #2196f3;
+  color: #ffffff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Primary Color - Blue */
+a,
+.btn-primary {
+  color: #2196f3;
+  border-color: #2196f3;
+}
+
+a:hover,
+a:focus,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #0d47a1;
+  border-color: #0d47a1;
+}
+
+/* Secondary Color - Green */
+.btn-secondary {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #388e3c;
+  color: #ffffff;
+}
+
+/* Accent Color - Orange */
+.btn-accent {
+  background-color: #ff9800;
+  color: #ffffff;
+}
+
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: #f57c00;
+  color: #ffffff;
+}
+
+.nav-options{
+ 
+  overflow: hidden;
+  transition:width .4s all;
+}
+
+.nav-options-hide{
+  width: 0;
+}
+
+
+
+.btn-nav-options{
+  width: 100%;
+  border: none;
+  background: transparent;
+  /* color: green; */
+  font-weight: bold;
+  text-shadow: 0 0 5px white;
+  padding: .5vh 1vw;
+  color: black;
+  
+}
+
+.btn-nav-options:hover{
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+form{
+  position: relative;
+}

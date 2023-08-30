@@ -1,0 +1,71 @@
+<%- include('partials/header')%> <%- include('partials/navDoctor')%>
+
+<div
+  class="w-100 h-100"
+  style="
+    background-image: url(https://media.istockphoto.com/id/896916870/photo/white-hospital-lobby-poster.jpg?s=612x612&w=0&k=20&c=XeFLnatT6viPh5ptVETjeohLy6X-wRXc0ZMJhkH7IhQ=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <div
+    class="signIn-container w-100 h-100 d-flex flex-column"
+    style="background: rgba(0, 0, 0, 0.5)"
+  >
+    <h1 class="text-center mt-5 text-white pt-5">Doctor</h1>
+    <form
+      method="post"
+      action="/doctor/signinDoctor"
+      class="w-25 rounded p-3 mx-auto my-3 d-flex flex-column align-items-center"
+      style="background: rgba(255, 255, 255, 0.6)"
+      onsubmit="return validateForm()"
+    >
+      <h1>Sign In</h1>
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="Name"
+        name="username"
+      />
+      <input
+        class="form-control mb-3"
+        type="password"
+        placeholder="********"
+        name="password"
+      />
+      <p>
+        <a href="/doctor/forgetPassword" class="text-decoration-none"
+          >Forget Password?</a
+        >
+      </p>
+      <button class="btn btn-primary text-white w-25">Sign In</button>
+      <p>
+        Dont't have an account ?
+        <a href="/doctor/signUpDoctor">Sign up</a>
+      </p>
+      <% if (error && error.length>0) { %>
+      <div class="alert alert-danger" role="alert">❌ <%=error%></div>
+      <%} %> <% if (msg && msg.length>0) { %>
+      <div class="alert alert-success" role="alert">✅ <%=msg%></div>
+      <%} %>
+    </form>
+  </div>
+</div>
+<script>
+  const validateForm = () => {
+    const nameInput = document.querySelector('input[name="name"]');
+    const passwordInput = document.querySelector('input[name="password"]');
+
+    if (nameInput.value.trim() === "") {
+      alert("Name is required.");
+      return false;
+    }
+    if (passwordInput.value.trim() === "") {
+      alert("Password is required.");
+      return false;
+    }
+    return true;
+  };
+</script>
+<%- include('partials/footer')%>

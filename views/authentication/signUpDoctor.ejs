@@ -1,0 +1,112 @@
+<%- include('partials/header')%> <%- include('partials/navDoctor')%>
+
+<div
+  class="w-100 h-100"
+  style="
+    background-image: url(https://media.istockphoto.com/id/896916870/photo/white-hospital-lobby-poster.jpg?s=612x612&w=0&k=20&c=XeFLnatT6viPh5ptVETjeohLy6X-wRXc0ZMJhkH7IhQ=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <div
+    class="signIn-container w-100 h-100 d-flex flex-column"
+    style="background: rgba(0, 0, 0, 0.5)"
+  >
+    <h1 class="text-center mt-5 text-white pt-5">Doctor</h1>
+    <form
+      class="w-25 rounded p-3 mx-auto my-3 d-flex flex-column align-items-center"
+      style="background: rgba(255, 255, 255, 0.6)"
+      action="/doctor/signupDoctor"
+      method="post"
+      onsubmit="return validateForm()"
+    >
+      <h1 class="mb-4">Sign Up</h1>
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="Name"
+        name="username"
+      />
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="Email"
+        name="email"
+      />
+      <input
+        class="form-control mb-3"
+        type="text"
+        placeholder="specialist"
+        name="specialist"
+      />
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Age"
+        name="age"
+      />
+      <input
+        class="form-control mb-3"
+        type="Number"
+        placeholder="Contact Number"
+        name="contact"
+      />
+      <input
+        class="form-control mb-3"
+        type="password"
+        placeholder="********"
+        name="password"
+      />
+
+      <button class="btn btn-primary w-25 text-white" type="submit">
+        Sign Up
+      </button>
+      <p>
+        Already have an account ?
+        <a href="/doctor/signInDoctor" class="text-decoration-none">Sign In</a>
+      </p>
+      <% if (error && error.length>0) { %>
+      <div class="alert alert-danger text-center mt-2" role="alert">
+        ❌ <%=error%>
+      </div>
+      <%} %>
+    </form>
+  </div>
+</div>
+<script>
+  const validateForm = () => {
+    const nameInput = document.querySelector('input[name="name"]');
+    const specialistInput = document.querySelector('input[name="specialist"]');
+    const ageInput = document.querySelector('input[name="age"]');
+    const contactInput = document.querySelector('input[name="contact"]');
+    const passwordInput = document.querySelector('input[name="password"]');
+
+    if (nameInput.value.trim() === "") {
+      alert("Name is required.");
+      return false;
+    }
+
+    if (specialistInput.value.trim() === "") {
+      alert("Specialist is required.");
+      return false;
+    }
+
+    if (ageInput.value.trim() === "") {
+      alert("Age is required.");
+      return false;
+    }
+
+    if (contactInput.value.trim() === "") {
+      alert("Contact Number is required.");
+      return false;
+    }
+
+    if (passwordInput.value.trim() === "") {
+      alert("Password is required.");
+      return false;
+    }
+    return true;
+  };
+</script>
+<%- include('partials/footer')%>
